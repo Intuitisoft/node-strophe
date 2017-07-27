@@ -53,8 +53,8 @@
  *    seem to work on jsdom).
  * 5. While getting the response from XMLHttpRequest, manually convert the text
  *    data to XML.
- * 6. All calls to nodeName should replaced by nodeName.toLowerCase() since jsdom
- *    seems to always convert node names to upper case.
+ * 6. ####REMOVED#### All calls to nodeName should replaced by nodeName.toLowerCase() since jsdom
+ *    seems to always convert node names to upper case. 
  *
  */
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -354,7 +354,7 @@ Strophe = {
      */
     isTagEqual: function (el, name)
     {
-        return el.tagName.toLowerCase() == name.toLowerCase();
+        return el.tagName == name;
     },
 
     /** PrivateVariable: _xmlGenerator
@@ -565,7 +565,7 @@ Strophe = {
             el = Strophe.xmlElement(elem.tagName);
 
             for (i = 0; i < elem.attributes.length; i++) {
-                el.setAttribute(elem.attributes[i].nodeName.toLowerCase(),
+                el.setAttribute(elem.attributes[i].nodeName,
                                 elem.attributes[i].value);
             }
 
@@ -801,17 +801,17 @@ Strophe = {
             elem = elem.tree();
         }
 
-        var nodeName = elem.nodeName.toLowerCase();
+        var nodeName = elem.nodeName;
         var i, child;
 
         if (elem.getAttribute("_realname")) {
-            nodeName = elem.getAttribute("_realname").toLowerCase();
+            nodeName = elem.getAttribute("_realname");
         }
 
-        result = "<" + nodeName.toLowerCase();
+        result = "<" + nodeName;
         for (i = 0; i < elem.attributes.length; i++) {
-               if(elem.attributes[i].nodeName.toLowerCase() != "_realname") {
-                 result += " " + elem.attributes[i].nodeName.toLowerCase() +
+               if(elem.attributes[i].nodeName != "_realname") {
+                 result += " " + elem.attributes[i].nodeName +
                 "='" + elem.attributes[i].value
                     .replace(/&/g, "&amp;")
                        .replace(/\'/g, "&apos;")
@@ -830,7 +830,7 @@ Strophe = {
                     result += child.nodeValue;
                 }
             }
-            result += "</" + nodeName.toLowerCase() + ">";
+            result += "</" + nodeName + ">";
         } else {
             result += "/>";
         }
@@ -2913,11 +2913,11 @@ Strophe.Connection.prototype = {
 
         for (i = 0; i < elem.childNodes.length; i++) {
             child = elem.childNodes[i];
-            if (child.nodeName.toLowerCase() == 'bind') {
+            if (child.nodeName == 'bind') {
                 this.do_bind = true;
             }
 
-            if (child.nodeName.toLowerCase() == 'session') {
+            if (child.nodeName == 'session') {
                 this.do_session = true;
             }
         }
