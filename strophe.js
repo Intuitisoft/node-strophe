@@ -288,8 +288,8 @@ if (!Array.prototype.indexOf)
         return false;
       }
     },
-    
-    
+
+
     /** Constants: Connection Status Constants
      *  Connection status constants for use by the connection handler
      *  callback.
@@ -1496,7 +1496,7 @@ if (!Array.prototype.indexOf)
     }
   };
 
- 
+
   /** Class: Strophe.Connection
    *  XMPP Connection manager.
    *
@@ -3344,13 +3344,7 @@ if (!Array.prototype.indexOf)
 
   Strophe.Connection.prototype.mechanisms[Strophe.SASLMD5.prototype.name] = Strophe.SASLMD5;
 
-})(function () {
-  window.Strophe = arguments[0];
-  window.$build = arguments[1];
-  window.$msg = arguments[2];
-  window.$iq = arguments[3];
-  window.$pres = arguments[4];
-});
+
 /*
  This program is distributed under the terms of the MIT license.
  Please see the LICENSE file for details.
@@ -4727,3 +4721,10 @@ Strophe.Websocket.prototype = {
     this._conn._onIdle.bind(this._conn)();
   }
 };
+})(function () {
+  window.Strophe = arguments[0];
+  window.$build = arguments[1];
+  window.$msg = arguments[2];
+  window.$iq = arguments[3];
+  window.$pres = arguments[4];
+});
